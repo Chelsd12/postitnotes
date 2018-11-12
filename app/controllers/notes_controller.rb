@@ -16,10 +16,10 @@ class NotesController < ApplicationController
   end
 
   def create
-    @note = Note.new(pages_params)
+    @note = Note.new(notes_params)
 
     if(@note.save)
-      redirect_to pages_path
+      redirect_to notes_path
     else
       render :new
     end
@@ -27,15 +27,15 @@ class NotesController < ApplicationController
 
   def update
     @note = Note.find(params[:id]) 
-    if @note.update(page_params)
-      redirect_to pages_path
+    if @note.update(note_params)
+      redirect_to notes_path
     else
       render :edit
     end
   end
   
   private
-  def page_params
+  def note_params
     params.require(:note).permit(:title, :author, :body)
   end
 end
